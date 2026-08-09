@@ -27,6 +27,7 @@
       </a>
 
       <!-- Header Actions: Quick Auth & The Iconic Kinfolk Two Lines Menu Trigger -->
+      <!-- Header Actions: Search, Bookmarks & The Iconic Kinfolk Two Lines Menu Trigger -->
       <div class="header-actions">
         <!-- Search Trigger -->
         <button class="icon-btn-minimal" id="openSearchBtn" title="Search all stories" aria-label="Search">
@@ -38,22 +39,6 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
           <span class="badge-count" id="bookmarksCountBadge">0</span>
         </button>
-
-        <!-- Dynamic User Auth Quick Bar (Signed Out: Sign In / Sign Up, Signed In: User Menu) -->
-        <div id="headerAuthContainer" class="auth-header-wrap">
-          <div id="authSignedOutState" style="display: flex; align-items: center; gap: 8px;">
-            <button class="btn-text-nav" id="headerSignInBtn" onclick="openAuthModal('signin')">Sign In</button>
-            <button class="btn-text-nav" id="headerSignUpBtn" onclick="openAuthModal('signup')">Sign Up</button>
-          </div>
-
-          <div id="authSignedInState" style="display: none; align-items: center; gap: 10px;">
-            <div class="user-nav-profile">
-              <img id="navUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User Avatar" class="author-avatar">
-              <span id="navUserName" class="nav-user-name">Reader</span>
-            </div>
-            <button class="btn-text-nav" id="headerSignOutBtn" title="Sign out">Sign Out</button>
-          </div>
-        </div>
 
         <!-- The Iconic Kinfolk Two Lines Menu Button (=) -->
         <button class="kinfolk-menu-toggle" id="kinfolkMenuToggle" aria-label="Open Full Navigation Menu">
@@ -115,15 +100,11 @@
           </ul>
         </div>
 
-        <!-- Column 4: Account & Issue Card -->
+        <!-- Column 4: Archives & Issue Card -->
         <div class="menu-col menu-col-account">
-          <div class="menu-col-eyebrow">ACCOUNT & ARCHIVE</div>
+          <div class="menu-col-eyebrow">ARCHIVE & DISCOVERY</div>
 
           <div class="menu-action-buttons">
-            <button class="menu-action-btn" onclick="closeKinfolkMenu(); openAuthModal('signin');">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span id="menuAuthBtnText">Sign In / Create Account</span>
-            </button>
             <button class="menu-action-btn" onclick="closeKinfolkMenu(); openSearchModal();">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               <span>Search Stories & Archives</span>
@@ -572,59 +553,6 @@
   <!-- ==========================================================================
        MODALS & OVERLAYS
        ========================================================================== -->
-
-  <!-- AUTH MODAL (SIGN IN / SIGN UP) -->
-  <div class="modal-backdrop" id="authModal">
-    <div class="modal-container" style="max-width: 440px;">
-      <button class="modal-close-btn" id="closeAuthModalBtn" aria-label="Close auth dialog">&times;</button>
-      <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0;">
-        <span class="brand-logo" style="font-size: 1.35rem;">AUTONOMY WALKS</span>
-        <p id="authModalSubtitle" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">Sign in to like stories, participate in discussions, and join civic polls.</p>
-      </div>
-
-      <div class="modal-body" style="padding-top: 16px;">
-        <!-- Auth Tabs -->
-        <div class="auth-tabs-row">
-          <button class="auth-tab-btn active" id="tabBtnSignIn">Sign In</button>
-          <button class="auth-tab-btn" id="tabBtnSignUp">Create Account</button>
-        </div>
-
-        <!-- Sign In Form -->
-        <form id="signInForm" class="auth-form-panel active">
-          <div class="form-group">
-            <label for="loginEmail">Email Address</label>
-            <input type="email" id="loginEmail" placeholder="you@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" placeholder="••••••••" required>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Sign In</button>
-        </form>
-
-        <!-- Sign Up Form -->
-        <form id="signUpForm" class="auth-form-panel">
-          <div class="form-group">
-            <label for="signupName">Full Name</label>
-            <input type="text" id="signupName" placeholder="e.g. Elena Rostova" required>
-          </div>
-          <div class="form-group">
-            <label for="signupEmail">Email Address</label>
-            <input type="email" id="signupEmail" placeholder="you@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="signupPassword">Create Password</label>
-            <input type="password" id="signupPassword" placeholder="••••••••" required minlength="6">
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
-        </form>
-
-        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-hairline); font-size: 0.76rem; color: var(--text-muted); text-align: center;">
-          Secured with Clerk Authentication Protocol
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- KINFOLK ARTICLE READER MODAL (PDF Pages 11-16) -->
   <div class="modal-backdrop" id="readerModal">

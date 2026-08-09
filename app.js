@@ -100,12 +100,8 @@ class AppState {
     localStorage.removeItem(this.AUTH_USER_KEY);
   }
 
-  // Strict Auth-Gated Likes
+  // Direct Instant Likes
   toggleLike(id, type = 'article') {
-    if (!this.isAuthenticated()) {
-      return false;
-    }
-
     const isLiked = !!this.userLikes[id];
     if (isLiked) {
       delete this.userLikes[id];
@@ -214,12 +210,10 @@ window.app = app;
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initUI();
-  updateAuthUI();
   renderAllSections();
   initAuctionTimerTicker();
   initPodcastPlayer();
   initAdminTabs();
-  initAuthModalHandlers();
   initEventHandlers();
 });
 
@@ -338,147 +332,6 @@ function showToast(message, type = 'info') {
   }, 3500);
 }
 
-// Open Auth Modal
-window.openAuthModal = function(mode = 'signin', promptMsg = null) {
-  const modal = document.getElementById('authModal');
-  const subtitle = document.getElementById('authModalSubtitle');
-  const tabSignIn = document.getElementById('tabBtnSignIn');
-  const tabSignUp = document.getElementById('tabBtnSignUp');
-  const formSignIn = document.getElementById('signInForm');
-  const formSignUp = document.getElementById('signUpForm');
-
-  if (promptMsg && subtitle) {
-    subtitle.textContent = promptMsg;
-  } else if (subtitle) {
-    subtitle.textContent = 'Sign in to like stories, participate in discussions, and join civic polls.';
-  }
-
-  if (mode === 'signup') {
-    tabSignIn?.classList.remove('active');
-    tabSignUp?.classList.add('active');
-    formSignIn?.classList.remove('active');
-    formSignUp?.classList.add('active');
-  } else {
-    tabSignIn?.classList.add('active');
-    tabSignUp?.classList.remove('active');
-    formSignIn?.classList.add('active');
-    formSignUp?.classList.remove('active');
-  }
-
-  modal?.classList.add('active');
-};
-
-function initAuthModalHandlers() {
-  const tabSignIn = document.getElementById('tabBtnSignIn');
-  const tabSignUp = document.getElementById('tabBtnSignUp');
-  const formSignIn = document.getElementById('signInForm');
-  const formSignUp = document.getElementById('signUpForm');
-  const modal = document.getElementById('authModal');
-  const closeBtn = document.getElementById('closeAuthModalBtn');
-
-  tabSignIn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    tabSignIn.classList.add('active');
-    tabSignUp?.classList.remove('active');
-    formSignIn?.classList.add('active');
-    formSignUp?.classList.remove('active');
-  });
-
-  tabSignUp?.addEventListener('click', (e) => {
-    e.preventDefault();
-    tabSignUp.classList.add('active');
-    tabSignIn?.classList.remove('active');
-    formSignUp?.classList.add('active');
-    formSignIn?.classList.remove('active');
-  });
-
-  closeBtn?.addEventListener('click', () => {
-    modal?.classList.remove('active');
-    app.pendingLikeTarget = null;
-  });
-
-  // Sign In Form Submit
-  formSignIn?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
-    const pass = document.getElementById('loginPassword').value;
-
-    const user = app.login(email, pass);
-    updateAuthUI();
-    modal?.classList.remove('active');
-    showToast(`Welcome back, ${user.name}!`, 'success');
-
-    // Fulfill pending like if any
-    if (app.pendingLikeTarget) {
-      const { id, type } = app.pendingLikeTarget;
-      app.toggleLike(id, type);
-      renderArticles();
-      renderCampaigns(document.querySelector('.filter-tab-btn.active')?.dataset.filter || 'all');
-      if (app.activeArticleId === id) updateReaderModalLikeBtn();
-      showToast('Liked post ❤️', 'success');
-      app.pendingLikeTarget = null;
-    }
-  });
-
-  // Sign Up Form Submit
-  formSignUp?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('signupName').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-    const pass = document.getElementById('signupPassword').value;
-
-    const user = app.signup(name, email, pass);
-    updateAuthUI();
-    modal?.classList.remove('active');
-    showToast(`Welcome to Autonomy Walks, ${user.name}!`, 'success');
-
-    if (app.pendingLikeTarget) {
-      const { id, type } = app.pendingLikeTarget;
-      app.toggleLike(id, type);
-      renderArticles();
-      renderCampaigns(document.querySelector('.filter-tab-btn.active')?.dataset.filter || 'all');
-      if (app.activeArticleId === id) updateReaderModalLikeBtn();
-      showToast('Liked post ❤️', 'success');
-      app.pendingLikeTarget = null;
-    }
-  });
-
-  // Sign Out Handlers
-  const handleSignOut = () => {
-    app.logout();
-    updateAuthUI();
-    renderArticles();
-    renderCampaigns(document.querySelector('.filter-tab-btn.active')?.dataset.filter || 'all');
-    showToast('Signed out successfully', 'info');
-  };
-
-  document.getElementById('headerSignOutBtn')?.addEventListener('click', handleSignOut);
-  document.getElementById('mobileSignOutBtn')?.addEventListener('click', handleSignOut);
-
-  // Trigger buttons
-  document.getElementById('headerSignInBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openAuthModal('signin');
-  });
-  
-  document.getElementById('headerSignUpBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    openAuthModal('signup');
-  });
-  
-  document.getElementById('mobileSignInBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('mobileNavDrawer')?.classList.remove('active');
-    openAuthModal('signin');
-  });
-
-  document.getElementById('mobileSignUpBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('mobileNavDrawer')?.classList.remove('active');
-    openAuthModal('signup');
-  });
-}
-
 // Render All Sections
 function renderAllSections() {
   renderHeroStories();
@@ -564,21 +417,16 @@ function renderArticles() {
   }).join('');
 }
 
-// Strictly Auth-Gated Like Handler
+// Direct Instant Like Handler
 window.handleLikeArticle = function(id, event) {
   if (event) {
     event.stopPropagation();
     event.preventDefault();
   }
 
-  if (!app.isAuthenticated()) {
-    app.pendingLikeTarget = { id, type: 'article' };
-    openAuthModal('signin', 'Please sign in or create an account to like stories!');
-    return;
-  }
-
   const liked = app.toggleLike(id, 'article');
   renderArticles();
+  renderScienceTech();
   if (app.activeArticleId === id) {
     updateReaderModalLikeBtn();
   }
@@ -630,7 +478,7 @@ function renderCampaigns(filter = 'all') {
         <h4 class="campaign-title">${c.title}</h4>
         <p class="campaign-subtitle">${c.subtitle}</p>
         <div class="post-action-bar">
-          <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="handleLikeCampaign('${c.id}', event)" title="${app.isAuthenticated() ? 'Like pick' : 'Sign in to like'}">
+          <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="handleLikeCampaign('${c.id}', event)" title="Like pick">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="${isLiked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             <span>${c.likes}</span>
           </button>
@@ -645,12 +493,6 @@ window.handleLikeCampaign = function(id, event) {
   if (event) {
     event.stopPropagation();
     event.preventDefault();
-  }
-
-  if (!app.isAuthenticated()) {
-    app.pendingLikeTarget = { id, type: 'campaign' };
-    openAuthModal('signin', 'Please sign in or create an account to like campaign picks!');
-    return;
   }
 
   const liked = app.toggleLike(id, 'campaign');
