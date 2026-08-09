@@ -1,0 +1,20 @@
+{
+  "name": "autonomy-walks",
+  "version": "1.0.0",
+  "description": "Autonomy Walks — Independent Art, Journalism & Civic Discourse",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'Build complete'"
+  },
+  "keywords": [
+    "journalism",
+    "art",
+    "kinfolk",
+    "politics",
+    "auctions",
+    "science"
+  ],
+  "author": "Autonomy Walks",
+  "license": "ISC"
+}
