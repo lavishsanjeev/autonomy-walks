@@ -1,0 +1,2587 @@
+/* ==========================================================================
+   AUTONOMY WALKS — KINFOLK WARM BEIGE / LINEN EDITORIAL DESIGN SYSTEM
+   Warm Beige & Ecru Parchment • Two-Lines Navigation • High-Fashion Serif
+   Rock-Solid Responsive Architecture for Mobile, Tablet, Laptop & Desktop
+   ========================================================================== */
+
+:root {
+  /* Warm Beige & Yellowish Parchment Palette */
+  --bg-main: #FAF7F0;           /* Luxurious warm beige / cream parchment */
+  --bg-paper: #F4EFE3;          /* Soft yellowish ecru / linen */
+  --bg-paper-light: #EDE5D5;    /* Subtle tinted beige paper */
+  --bg-paper-warm: #E4D9C4;     /* Deep oatmeal / warm sand */
+  --bg-card: #FCFAF6;           /* Crisp warm card surface */
+  --bg-dark: #191816;           /* Deep obsidian ink dark */
+  --bg-dark-card: #22211E;
+  
+  /* Ink & Typography Colors */
+  --text-primary: #1C1A17;      /* Warm black ink */
+  --text-secondary: #565046;    /* Warm charcoal body text */
+  --text-muted: #8C8375;        /* Muted sandstone */
+  --text-light: #FAF7F0;
+  
+  /* Hairline Dividers & Borders */
+  --border-hairline: #E4DAC9;   /* Warm sand hairline */
+  --border-medium: #D0C4B0;     /* Refined sand border */
+  --border-dark: #2A2824;
+  
+  /* Natural Earth Accents */
+  --accent-gold: #BD8E36;
+  --accent-gold-hover: #A37625;
+  --accent-crimson: #9C3324;
+  --accent-green: #37693F;
+  --accent-sand: #D9CBAC;
+
+  /* Typography Scales */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Responsive Dimensions & Spacing */
+  --container-max: 1380px;
+  --container-padding: clamp(16px, 4vw, 40px);
+  --header-height: 72px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(40, 30, 15, 0.04);
+  --shadow-hover: 0 12px 32px rgba(40, 30, 15, 0.08);
+  --shadow-modal: 0 24px 70px rgba(30, 25, 15, 0.18);
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   GLOBAL RESETS & FLUID FOUNDATIONS (Zero Horizontal Overflow)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body.kinfolk-pure-theme {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--text-primary);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   01. ULTRA-MINIMAL KINFOLK SITE HEADER (Warm Beige Glass)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 247, 240, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-hairline);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  width: 100%;
+  gap: 12px;
+}
+
+.brand-logo-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.8vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.8vw, 16px);
+  flex-shrink: 0;
+}
+
+.icon-btn-minimal {
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  position: relative;
+  transition: opacity var(--transition-fast);
+}
+
+.icon-btn-minimal:hover {
+  opacity: 0.6;
+}
+
+.badge-count {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  font-size: 0.6rem;
+  font-weight: 700;
+  min-width: 15px;
+  height: 15px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-text-nav {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+
+.btn-text-nav:hover {
+  color: var(--accent-gold);
+}
+
+.user-nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-card);
+  padding: 3px 10px 3px 6px;
+  border-radius: var(--radius-pill);
+}
+
+.nav-user-name {
+  font-size: 0.76rem;
+  font-weight: 600;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.author-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* THE ICONIC TWO LINES MENU BUTTON (=) */
+.kinfolk-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.two-lines-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 9px;
+}
+
+.two-lines-icon .line {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--text-primary);
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.kinfolk-menu-toggle:hover .two-lines-icon .line {
+  background-color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   02. KINFOLK FULLSCREEN OVERLAY MENU (Warm Beige Linen)
+   ========================================================================== */
+.kinfolk-fullscreen-menu {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-main);
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: clamp(20px, 4vw, 40px) 0 clamp(30px, 6vw, 60px);
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.kinfolk-fullscreen-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.kinfolk-menu-inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+}
+
+.kinfolk-menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+
+.kinfolk-menu-close-btn {
+  font-size: 2.2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-primary);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.kinfolk-menu-close-btn:hover {
+  transform: scale(1.1);
+  color: var(--accent-crimson);
+}
+
+.kinfolk-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3.5vw, 48px);
+  margin-bottom: clamp(32px, 5vw, 60px);
+}
+
+.menu-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-col-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.menu-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menu-main-link {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  line-height: 1.25;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.menu-main-link:hover {
+  color: var(--accent-gold);
+  transform: translateX(4px);
+}
+
+.menu-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.menu-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-card);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.menu-action-btn:hover {
+  border-color: var(--text-primary);
+  background: var(--bg-paper);
+}
+
+.menu-issue-cover-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.menu-issue-cover-card:hover {
+  transform: translateY(-2px);
+}
+
+.menu-issue-cover-card img {
+  width: 60px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.kinfolk-menu-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.menu-footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Subtle / Hidden Admin Button at Bottom Footer */
+.hidden-admin-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: #777;
+  opacity: 0.25;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.hidden-admin-btn:hover {
+  opacity: 0.85;
+  color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   03. BUTTONS & TYPOGRAPHY SHARED
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-main);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+  background-color: #33302C;
+}
+
+.btn-outline {
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  background: var(--bg-paper);
+}
+
+.btn-gold {
+  background-color: var(--accent-gold);
+  color: #FFFFFF;
+  border: 1px solid var(--accent-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--accent-gold-hover);
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.72rem;
+}
+
+/* Kinfolk Section Headers with Hairline Divider (PDF Pages 4, 6, 7) */
+.section-wrapper {
+  padding: clamp(44px, 7vw, 84px) 0;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-main);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kinfolk-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-hairline);
+  padding-bottom: 14px;
+  margin-bottom: clamp(20px, 3.5vw, 36px);
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.kinfolk-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.kinfolk-view-all {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+}
+
+.kinfolk-view-all:hover {
+  color: var(--text-primary);
+}
+
+/* Category Badges */
+.category-badge {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.category-badge.research {
+  color: var(--accent-green);
+}
+
+.category-badge.politics {
+  color: var(--accent-crimson);
+}
+
+.category-badge.art {
+  color: var(--accent-gold);
+}
+
+.category-badge.science {
+  color: #2D68C4;
+}
+
+/* Post Action Bar (Likes, Bookmark) */
+.post-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  padding: 4px 6px;
+}
+
+.action-btn:hover {
+  color: var(--text-primary);
+}
+
+.action-btn.liked {
+  color: var(--accent-crimson);
+}
+
+.action-btn.liked svg {
+  fill: var(--accent-crimson);
+  stroke: var(--accent-crimson);
+}
+
+/* ==========================================================================
+   04. KINFOLK HERO SECTION (PDF Pages 3 & 8)
+   ========================================================================== */
+.hero-kinfolk {
+  position: relative;
+  min-height: clamp(520px, 80vh, 840px);
+  display: flex;
+  align-items: flex-end;
+  background-color: #111;
+  color: #FFFFFF;
+  overflow: hidden;
+  padding: clamp(60px, 8vw, 100px) 0 clamp(30px, 4vw, 48px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-kinfolk-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.78;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-kinfolk-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.hero-kinfolk-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: clamp(24px, 4vw, 40px);
+  align-items: flex-end;
+}
+
+.hero-kicker-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #EAE6DC;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.hero-main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.08;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+  word-break: break-word;
+}
+
+.hero-main-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.8vw, 1.35rem);
+  font-weight: 300;
+  color: #EFECE4;
+  line-height: 1.5;
+  max-width: 580px;
+}
+
+.btn-hero-read {
+  background: #FFFFFF;
+  color: #1C1A17;
+  padding: 10px 24px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.btn-hero-read:hover {
+  background: #EAE5D8;
+}
+
+/* Floating "LATEST STORIES" Selector Overlay (PDF Pages 3 & 8) */
+.hero-stories-widget {
+  background: rgba(22, 20, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: clamp(16px, 2.5vw, 24px);
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-stories-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #FFF;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 12px;
+}
+
+.hero-stories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-story-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  gap: 12px;
+  transition: all var(--transition-fast);
+}
+
+.hero-story-item:hover, .hero-story-item.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-story-item.active .hero-story-title {
+  color: #FFF;
+  font-weight: 600;
+}
+
+.hero-story-cat {
+  font-size: 0.7rem;
+  color: #B2ADA2;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.hero-story-title {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: #E2DDD3;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   05. ABOUT / MANIFESTO SPREAD (PDF Page 2)
+   ========================================================================== */
+.manifesto-section {
+  padding: clamp(44px, 7vw, 90px) 0;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-hairline);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(28px, 5vw, 70px);
+  align-items: center;
+}
+
+.manifesto-photos-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 2vw, 18px);
+  margin-bottom: 28px;
+}
+
+.manifesto-thumb-box {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--bg-paper);
+}
+
+.manifesto-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manifesto-tagline-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.manifesto-body-p {
+  font-family: var(--font-body);
+  font-size: clamp(0.98rem, 1.8vw, 1.15rem);
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.manifesto-tall-art {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  width: 100%;
+}
+
+.manifesto-tall-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manifesto-art-caption {
+  position: absolute;
+  bottom: clamp(12px, 2.5vw, 22px);
+  left: clamp(12px, 2.5vw, 22px);
+  right: clamp(12px, 2.5vw, 22px);
+  background: rgba(250, 247, 240, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: clamp(12px, 2vw, 18px) clamp(14px, 2.5vw, 22px);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(0.84rem, 1.8vw, 0.94rem);
+  line-height: 1.55;
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   06. EDITORIAL SERIES / 5-COLUMN PORTRAIT GRID (PDF Pages 4 & 6)
+   ========================================================================== */
+.editorial-portrait-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+  width: 100%;
+}
+
+.editorial-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: 14px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.editorial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.editorial-media-box {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--bg-paper);
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.editorial-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.editorial-card:hover .editorial-media-box img {
+  transform: scale(1.04);
+}
+
+.editorial-meta-top {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.editorial-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  word-break: break-word;
+  transition: color var(--transition-fast);
+}
+
+.editorial-card:hover .editorial-card-title {
+  color: var(--accent-gold);
+}
+
+.editorial-card-excerpt {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   07. BREAKOUT IMMERSION BANNER (PDF Page 5)
+   ========================================================================== */
+.breakout-banner-section {
+  position: relative;
+  min-height: clamp(340px, 55vh, 580px);
+  display: flex;
+  align-items: flex-end;
+  background-color: #121212;
+  overflow: hidden;
+  margin: 24px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.breakout-banner-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.breakout-banner-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.breakout-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.breakout-banner-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding-bottom: clamp(24px, 5vw, 54px);
+}
+
+.breakout-top-kicker {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.92rem, 1.8vw, 1.15rem);
+  color: #EFEFEA;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.breakout-massive-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  line-height: 1.08;
+  cursor: pointer;
+  word-break: break-word;
+  transition: opacity var(--transition-fast);
+}
+
+.breakout-massive-title:hover {
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   08. THOUGHT STARTERS / HIGHLIGHTS LIST (PDF Page 7)
+   ========================================================================== */
+.thought-starters-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.thought-starter-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: clamp(16px, 3vw, 36px);
+  align-items: center;
+  padding: clamp(16px, 2.5vw, 26px) 0;
+  border-bottom: 1px solid var(--border-hairline);
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color var(--transition-fast);
+}
+
+.thought-starter-row:hover {
+  background-color: var(--bg-paper);
+}
+
+.thought-starter-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--bg-paper-warm);
+  width: 100%;
+}
+
+.thought-starter-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thought-starter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.thought-starter-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+  color: var(--text-secondary);
+}
+
+.thought-starter-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   09. POLITICAL CAMPAIGNS (PDF Page 4)
+   ========================================== */
+.campaign-filter-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  max-width: 100%;
+}
+
+.filter-tab-btn {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-card);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filter-tab-btn.active, .filter-tab-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-color: var(--text-primary);
+}
+
+.campaign-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(12px, 2vw, 20px);
+  width: 100%;
+}
+
+.campaign-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: 14px;
+  transition: transform var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.campaign-card:hover {
+  transform: translateY(-2px);
+}
+
+.campaign-img-wrap {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.campaign-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05);
+  transition: transform 0.5s ease;
+}
+
+.campaign-card:hover .campaign-img-wrap img {
+  transform: scale(1.05);
+}
+
+.campaign-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.campaign-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   10. LIVE ART AUCTIONS & COUNTDOWN
+   ========================================== */
+.auctions-section {
+  background-color: var(--bg-paper);
+}
+
+.auctions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.5vw, 28px);
+  width: 100%;
+}
+
+.auction-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.auction-media-box {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  position: relative;
+  background-color: #222;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.auction-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.auction-live-pill {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(18, 18, 18, 0.85);
+  color: #FFF;
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.auction-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.auction-artist-medium {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.bid-status-box {
+  background: var(--bg-paper-light);
+  border: 1px dashed var(--border-medium);
+  padding: 10px;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+}
+
+.bid-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.bid-amount {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.auction-countdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.countdown-timer {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-crimson);
+}
+
+/* ==========================================
+   11. PODCASTS / VOICES PLAYER
+   ========================================== */
+.podcast-container {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  gap: clamp(20px, 3vw, 36px);
+  background: #191816;
+  color: #FFFFFF;
+  padding: clamp(20px, 4vw, 40px);
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.podcast-featured-art {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  max-width: 280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.podcast-featured-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.podcast-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.podcast-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.podcast-host {
+  font-size: 0.85rem;
+  color: #B5AFA5;
+  margin-bottom: 18px;
+}
+
+.audio-scrubber-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.audio-time {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.audio-progress-bar {
+  flex-grow: 1;
+  height: 6px;
+  background: #333;
+  cursor: pointer;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.audio-progress-fill {
+  width: 25%;
+  height: 100%;
+  background: var(--accent-gold);
+}
+
+.player-main-btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.btn-play-podcast {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-main);
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-play-podcast:hover {
+  background: var(--accent-gold);
+  color: #FFF;
+}
+
+.podcast-playlist {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.playlist-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.playlist-item {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.playlist-item:hover, .playlist-item.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-item.active {
+  border-left: 2px solid var(--accent-gold);
+}
+
+.playlist-item-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-gold);
+}
+
+.playlist-item-title {
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   12. CITIZEN OPINION POLLS
+   ========================================== */
+.polls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 3vw, 32px);
+  width: 100%;
+}
+
+.poll-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: clamp(18px, 3.5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.poll-status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-crimson);
+  margin-bottom: 10px;
+}
+
+.poll-question {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 18px;
+  word-break: break-word;
+}
+
+.poll-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.poll-option-btn {
+  position: relative;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-main);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.poll-option-btn:hover {
+  border-color: var(--text-primary);
+}
+
+.poll-option-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--bg-paper-light);
+  transition: width 0.8s ease;
+  z-index: 1;
+}
+
+.poll-option-text, .poll-option-percent {
+  position: relative;
+  z-index: 2;
+  font-size: 0.85rem;
+}
+
+.poll-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 12px;
+  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ==========================================
+   13. RESEARCH PAPERS ARCHIVE
+   ========================================== */
+.papers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 2.5vw, 24px);
+  width: 100%;
+}
+
+.paper-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: clamp(16px, 2.5vw, 24px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.paper-title {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.paper-author {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.paper-abstract {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.paper-card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+
+/* ==========================================
+   14. SCIENCE & TECHNOLOGY SECTION (The Human Future)
+   ========================================== */
+.science-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.5vw, 28px);
+  width: 100%;
+}
+
+.science-tech-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: clamp(14px, 2vw, 20px);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.science-tech-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.science-tech-media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #111;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.science-tech-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.science-tech-card:hover .science-tech-media img {
+  transform: scale(1.05);
+}
+
+.science-tech-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.science-tech-title {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  word-break: break-word;
+  transition: color var(--transition-fast);
+}
+
+.science-tech-card:hover .science-tech-title {
+  color: var(--accent-gold);
+}
+
+.science-tech-author {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.science-tech-excerpt {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================
+   15. COMIC SERIES & EDITIONS (PDF Page 9)
+   ========================================== */
+.comic-series-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  width: 100%;
+}
+
+.comic-series-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(18px, 3.5vw, 32px);
+  color: #FFFFFF;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comic-series-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+.comic-series-card:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.comic-series-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.comic-series-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.comic-series-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #E2E2DE;
+  margin-bottom: 8px;
+}
+
+.comic-series-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+  font-weight: 500;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.comic-series-cta {
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FFF;
+  border-bottom: 1px solid #FFF;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+/* ==========================================
+   16. SCHOLARSHIPS
+   ========================================== */
+.scholarships-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 2.5vw, 24px);
+  width: 100%;
+}
+
+.scholarship-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  padding: clamp(16px, 2.5vw, 24px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.scholarship-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.scholarship-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+.scholarship-amount {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+/* ==========================================
+   17. NEWSLETTER BANNER
+   ========================================== */
+.newsletter-banner {
+  background-color: var(--bg-paper-warm);
+  padding: clamp(28px, 5vw, 60px) clamp(16px, 4vw, 48px);
+  border: 1px solid var(--border-hairline);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.newsletter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.newsletter-text {
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  color: var(--text-secondary);
+  margin-top: 8px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  max-width: 500px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.newsletter-form input {
+  flex: 1 1 220px;
+}
+
+/* ==========================================
+   18. SITE FOOTER
+   ========================================== */
+.site-footer {
+  background-color: var(--bg-dark);
+  color: #FFFFFF;
+  padding: clamp(40px, 6vw, 80px) 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: clamp(20px, 3.5vw, 40px);
+  padding-bottom: clamp(30px, 5vw, 60px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.footer-desc {
+  font-size: 0.82rem;
+  color: #999;
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 18px;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.footer-col-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #DDD;
+  margin-bottom: 16px;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-list a {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  font-size: 0.74rem;
+  color: #666;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   19. KINFOLK ARTICLE READER MODAL (PDF Pages 11-16, Warm Parchment)
+   ========================================================================== */
+.kinfolk-reader-container {
+  max-width: 900px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-hairline);
+  padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 48px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kinfolk-reader-body {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.reader-brand-tag {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.reader-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  word-break: break-word;
+}
+
+.reader-credits-line {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: clamp(18px, 3.5vw, 36px);
+}
+
+.reader-hero-media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: clamp(20px, 3.5vw, 40px);
+  background-color: var(--bg-paper);
+  width: 100%;
+}
+
+.reader-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reader-article-content {
+  font-family: var(--font-body);
+  font-size: clamp(0.98rem, 1.8vw, 1.18rem);
+  line-height: 1.9;
+  color: var(--text-primary);
+  text-align: left;
+  margin-bottom: 36px;
+}
+
+.reader-article-content p {
+  margin-bottom: 1.6em;
+}
+
+.reader-pull-quote {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-primary);
+  margin: clamp(20px, 3.5vw, 40px) auto;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  max-width: 600px;
+}
+
+.reader-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 2vw, 16px);
+  margin: clamp(18px, 3.5vw, 36px) 0;
+  width: 100%;
+}
+
+.reader-gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Threaded Comments in Reader */
+.comments-section-wrap {
+  text-align: left;
+  margin-top: 32px;
+  padding-top: 20px;
+}
+
+.comments-header {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.comment-form-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.comment-item {
+  background: var(--bg-card);
+  padding: 14px 16px;
+  border: 1px solid var(--border-hairline);
+  box-sizing: border-box;
+}
+
+.comment-author-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.comment-time {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.comment-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   20. MODALS & CMS STUDIO
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 23, 20, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 2.5vw, 24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  background: var(--bg-main);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  box-shadow: var(--shadow-modal);
+  transform: translateY(16px);
+  transition: transform var(--transition-smooth);
+  box-sizing: border-box;
+}
+
+.modal-backdrop.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--text-primary);
+  color: #FFF;
+}
+
+.modal-header {
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 32px) 14px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.modal-body {
+  padding: clamp(16px, 3vw, 28px) clamp(16px, 3vw, 32px);
+}
+
+/* Auth Tabs */
+.auth-tabs-row {
+  display: flex;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 18px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+}
+
+.auth-tab-btn.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
+.auth-form-panel {
+  display: none;
+}
+
+.auth-form-panel.active {
+  display: block;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.poll-option-input-row {
+  margin-bottom: 8px;
+}
+
+/* Admin Tabs */
+.admin-modal-container {
+  max-width: 960px;
+}
+
+.admin-nav-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-hairline);
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-paper);
+  padding: 8px 14px 0;
+  white-space: nowrap;
+}
+
+.admin-tab-btn {
+  padding: 10px 14px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.admin-tab-btn.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+  background: var(--bg-main);
+}
+
+.admin-tab-panel {
+  display: none;
+  padding: clamp(14px, 2.5vw, 24px);
+}
+
+.admin-tab-panel.active {
+  display: block;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.admin-table th, .admin-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.admin-table th {
+  background: var(--bg-paper);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+.btn-delete-row {
+  color: var(--accent-crimson);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+/* Bid Modal */
+.bid-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(14px, 2.5vw, 24px);
+}
+
+.bid-history-feed {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--border-hairline);
+  padding: 10px;
+  background: var(--bg-paper);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bid-feed-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border-hairline);
+}
+
+.bid-preset-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.btn-preset-bid {
+  padding: 6px 10px;
+  font-size: 0.74rem;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-card);
+  font-family: var(--font-mono);
+}
+
+/* Search Modal */
+.search-modal-container {
+  max-width: 660px;
+}
+
+.search-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.search-main-input {
+  font-size: clamp(0.92rem, 1.8vw, 1.15rem);
+  padding: 14px 18px 14px 44px;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.search-results-list {
+  max-height: 360px;
+  overflow-y: auto;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-result-card {
+  padding: 12px 14px;
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.search-result-card:hover {
+  background: var(--bg-paper);
+}
+
+/* Toasts */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  left: 20px;
+  max-width: 380px;
+  margin-left: auto;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--bg-dark);
+  color: #FFF;
+  padding: 12px 16px;
+  border-radius: var(--radius-xs);
+  font-size: 0.84rem;
+  pointer-events: auto;
+  border-left: 3px solid var(--accent-gold);
+}
+
+.toast.success {
+  border-left-color: var(--accent-green);
+}
+
+.toast.error {
+  border-left-color: var(--accent-crimson);
+}
+
+/* ==========================================================================
+   21. RIGOROUS RESPONSIVE MEDIA QUERIES (1200px, 992px, 768px, 480px)
+   ========================================================================== */
+
+/* Laptops & Desktops (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .editorial-portrait-grid, .campaign-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .auctions-grid, .papers-grid, .scholarships-grid, .science-tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .kinfolk-menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .podcast-container {
+    grid-template-columns: 220px 1fr;
+  }
+  .podcast-playlist {
+    grid-column: span 2;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 18px;
+  }
+}
+
+/* Tablets (max-width: 992px) */
+@media (max-width: 992px) {
+  .hero-kinfolk-content {
+    grid-template-columns: 1fr;
+  }
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .editorial-portrait-grid, .campaign-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .polls-grid {
+    grid-template-columns: 1fr;
+  }
+  .comic-series-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bid-modal-grid {
+    grid-template-columns: 1fr;
+  }
+  .kinfolk-menu-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .podcast-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .podcast-featured-art {
+    margin: 0 auto;
+  }
+  .player-main-btns {
+    justify-content: center;
+  }
+  .podcast-playlist {
+    grid-column: span 1;
+    text-align: left;
+  }
+}
+
+/* Mobile Screens (max-width: 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+
+  .btn-text-nav {
+    padding: 6px 4px;
+    font-size: 0.72rem;
+  }
+
+  .auth-header-wrap #authSignedOutState .btn-text-nav:last-child {
+    display: none; /* Keep header clean: hide 'Sign Up' in top bar, 'Sign In' is active & Two-Lines menu has full options */
+  }
+
+  .nav-user-name {
+    display: none;
+  }
+
+  /* All Grids collapse to single-column on mobile */
+  .editorial-portrait-grid, 
+  .campaign-grid, 
+  .auctions-grid, 
+  .papers-grid, 
+  .scholarships-grid, 
+  .science-tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Thought Starters Stack on Mobile */
+  .thought-starter-row {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+  }
+  .thought-starter-meta {
+    grid-column: span 2;
+  }
+
+  .manifesto-photos-duo {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .reader-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-form-inputs, .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .kinfolk-menu-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .modal-backdrop {
+    padding: 8px;
+  }
+
+  .modal-container {
+    max-height: 94vh;
+  }
+}
+
+/* Extra Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .brand-logo {
+    font-size: 1.08rem;
+    letter-spacing: 0.1em;
+  }
+
+  .icon-btn-minimal {
+    padding: 4px;
+  }
+
+  .two-lines-icon {
+    width: 22px;
+    height: 8px;
+  }
+
+  .hero-main-title {
+    font-size: 1.85rem;
+  }
+
+  .breakout-massive-title {
+    font-size: 1.55rem;
+  }
+
+  .thought-starter-row {
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomy Walks — Art, Journalism & Civic Discourse</title>
+  <meta name="description" content="An independent quarterly publication and public platform dedicated to investigative journalism, avant-garde art auctions, political expression, and academic policy research.">
+  
+  <!-- Premium Editorial Typography: Cormorant Garamond, Playfair Display, Newsreader & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="kinfolk-pure-theme">
+
+  <!-- ==========================================================================
+       SITE HEADER / ULTRA-MINIMAL KINFOLK HEADER (Wordmark on Left, Two Lines on Right)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      
+      <!-- Brand Wordmark (Kinfolk Style) -->
+      <a href="#hero" class="brand-logo-wrap" aria-label="Autonomy Walks Homepage">
+        <span class="brand-logo">AUTONOMY WALKS</span>
+      </a>
+
+      <!-- Header Actions: Quick Auth & The Iconic Kinfolk Two Lines Menu Trigger -->
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button class="icon-btn-minimal" id="openSearchBtn" title="Search all stories" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+
+        <!-- Bookmarks Trigger -->
+        <button class="icon-btn-minimal" id="openBookmarksBtn" title="Saved reading list" aria-label="Bookmarks">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          <span class="badge-count" id="bookmarksCountBadge">0</span>
+        </button>
+
+        <!-- Dynamic User Auth Quick Bar (Signed Out: Sign In / Sign Up, Signed In: User Menu) -->
+        <div id="headerAuthContainer" class="auth-header-wrap">
+          <div id="authSignedOutState" style="display: flex; align-items: center; gap: 8px;">
+            <button class="btn-text-nav" id="headerSignInBtn" onclick="openAuthModal('signin')">Sign In</button>
+            <button class="btn-text-nav" id="headerSignUpBtn" onclick="openAuthModal('signup')">Sign Up</button>
+          </div>
+
+          <div id="authSignedInState" style="display: none; align-items: center; gap: 10px;">
+            <div class="user-nav-profile">
+              <img id="navUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User Avatar" class="author-avatar">
+              <span id="navUserName" class="nav-user-name">Reader</span>
+            </div>
+            <button class="btn-text-nav" id="headerSignOutBtn" title="Sign out">Sign Out</button>
+          </div>
+        </div>
+
+        <!-- The Iconic Kinfolk Two Lines Menu Button (=) -->
+        <button class="kinfolk-menu-toggle" id="kinfolkMenuToggle" aria-label="Open Full Navigation Menu">
+          <span class="two-lines-icon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       KINFOLK FULLSCREEN OVERLAY MENU (Opens on Two Lines Click)
+       ========================================================================== -->
+  <div class="kinfolk-fullscreen-menu" id="kinfolkMenuOverlay" aria-modal="true" role="dialog">
+    <div class="container kinfolk-menu-inner">
+      <!-- Menu Top Bar with Wordmark and Close Button (×) -->
+      <div class="kinfolk-menu-top">
+        <span class="brand-logo">AUTONOMY WALKS</span>
+        <button class="kinfolk-menu-close-btn" id="closeKinfolkMenuBtn" aria-label="Close Menu">
+          <span class="close-cross">&times;</span>
+        </button>
+      </div>
+
+      <!-- Menu Navigation Grid -->
+      <div class="kinfolk-menu-grid">
+        <!-- Column 1: Editorial & Stories -->
+        <div class="menu-col">
+          <div class="menu-col-eyebrow">EDITORIAL & ISSUES</div>
+          <ul class="menu-nav-links">
+            <li><a href="#hero" class="menu-main-link" onclick="closeKinfolkMenu()">Home</a></li>
+            <li><a href="#manifesto" class="menu-main-link" onclick="closeKinfolkMenu()">The Manifesto</a></li>
+            <li><a href="#editorial-series" class="menu-main-link" onclick="closeKinfolkMenu()">Inside Issue Fifty-Nine</a></li>
+            <li><a href="#thought-starters" class="menu-main-link" onclick="closeKinfolkMenu()">Thought Starters</a></li>
+            <li><a href="#editions" class="menu-main-link" onclick="closeKinfolkMenu()">Curated Editions & Shop</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Politics & Repository -->
+        <div class="menu-col">
+          <div class="menu-col-eyebrow">POLITICS & SCIENCE</div>
+          <ul class="menu-nav-links">
+            <li><a href="#campaigns" class="menu-main-link" onclick="closeKinfolkMenu()">Politics & Civic Campaigns</a></li>
+            <li><a href="#science-tech" class="menu-main-link" onclick="closeKinfolkMenu()">Science & Technology</a></li>
+            <li><a href="#polls" class="menu-main-link" onclick="closeKinfolkMenu()">Citizen Opinion Polls</a></li>
+            <li><a href="#research" class="menu-main-link" onclick="closeKinfolkMenu()">Academic Papers (PDF)</a></li>
+            <li><a href="#scholarships" class="menu-main-link" onclick="closeKinfolkMenu()">Grants & Fellowships</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Art & Dialogue -->
+        <div class="menu-col">
+          <div class="menu-col-eyebrow">ART & DIALOGUE</div>
+          <ul class="menu-nav-links">
+            <li><a href="#auctions" class="menu-main-link" onclick="closeKinfolkMenu()">Live Art Auctions (4 Open)</a></li>
+            <li><a href="#podcasts" class="menu-main-link" onclick="closeKinfolkMenu()">Voices That Matter Podcast</a></li>
+            <li><a href="#feature-breakout" class="menu-main-link" onclick="closeKinfolkMenu()">Sanctuary Living Tour</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Account & Issue Card -->
+        <div class="menu-col menu-col-account">
+          <div class="menu-col-eyebrow">ACCOUNT & ARCHIVE</div>
+
+          <div class="menu-action-buttons">
+            <button class="menu-action-btn" onclick="closeKinfolkMenu(); openAuthModal('signin');">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span id="menuAuthBtnText">Sign In / Create Account</span>
+            </button>
+            <button class="menu-action-btn" onclick="closeKinfolkMenu(); openSearchModal();">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Search Stories & Archives</span>
+            </button>
+            <button class="menu-action-btn" onclick="closeKinfolkMenu(); openBookmarksDrawer();">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              <span>Saved Reading List (<span id="menuBookmarksBadge">0</span>)</span>
+            </button>
+          </div>
+
+          <div class="menu-issue-cover-card" onclick="closeKinfolkMenu(); openArticleReader('art-1');">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" alt="Issue 59 Cover">
+            <div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;">CURRENT VOLUME</div>
+              <div style="font-family: var(--font-serif); font-size: 1rem; font-weight: 500; line-height: 1.2;">Issue 59: The Clean Issue</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary); margin-top: 4px;">Read Lead Essay →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Footer -->
+      <div class="kinfolk-menu-footer">
+        <span>© 2026 Autonomy Walks Media Group • Independent & Public Journalism</span>
+        <div class="menu-footer-links">
+          <a href="#manifesto" onclick="closeKinfolkMenu()">Manifesto</a>
+          <a href="#auctions" onclick="closeKinfolkMenu()">Consign Art</a>
+          <a href="#research" onclick="closeKinfolkMenu()">Submissions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         01. KINFOLK HERO SECTION (PDF Pages 3 & 8)
+         ========================================================================== -->
+    <section class="hero-kinfolk" id="hero">
+      <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1920&q=80" alt="Editorial Cover Story" class="hero-kinfolk-img" id="heroBackdropImg">
+      <div class="hero-kinfolk-overlay"></div>
+
+      <div class="container hero-kinfolk-content">
+        <!-- Bottom Left: Featured Story Title & Excerpt -->
+        <div class="hero-text-block">
+          <div class="hero-kicker-tag" id="heroKickerTag">01 • ISSUE FIFTY-NINE • LEAD ESSAY</div>
+          <h1 class="hero-main-title" id="heroTitle">THE SCENT OF CLEAN</h1>
+          <p class="hero-main-subtitle" id="heroSubtitle">The hidden forces—and people—shaping our idea of “clean.”</p>
+          <div style="margin-top: 24px;">
+            <button class="btn btn-hero-read" id="heroReadPrimaryBtn">
+              <span>Read Story</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bottom Right: Floating "LATEST STORIES" Interactive Selector (PDF Page 3) -->
+        <div class="hero-stories-widget" id="heroStoriesWidget">
+          <div class="hero-stories-header">LATEST STORIES</div>
+          <div class="hero-stories-list" id="heroStoriesList">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02. ABOUT / MANIFESTO SECTION (PDF Page 2)
+         ========================================================================== -->
+    <section class="manifesto-section" id="manifesto">
+      <div class="container">
+        <div class="manifesto-grid">
+          <!-- Left Column: Duo Art Photos & Statement -->
+          <div class="manifesto-left-col">
+            <div class="manifesto-photos-duo">
+              <div class="manifesto-thumb-box">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Mindful Craft" loading="lazy">
+              </div>
+              <div class="manifesto-thumb-box">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Sculptural Form" loading="lazy">
+              </div>
+            </div>
+
+            <div class="manifesto-tagline-title">(2) MANIFESTO</div>
+            <p class="manifesto-body-p">
+              We are an independent quarterly publication inspired by naturalist beliefs, mindful living, and rigorous investigative journalism. We offer unfiltered public discourse, avant-garde art auctions, and open-access policy research crafted with intention and intellectual sovereignty.
+            </p>
+            <p class="manifesto-body-p" style="margin-top: 14px; font-size: 0.88rem; color: var(--text-secondary);">
+              We believe that a poem can paint a picture and a picture can form a piece of furniture. That inspiration and civic duty is why Autonomy Walks exists: a home where thinkers, artists, and citizens gather.
+            </p>
+          </div>
+
+          <!-- Right Column: Tall Editorial Visual Spread -->
+          <div class="manifesto-right-col">
+            <div class="manifesto-tall-art">
+              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1000&q=80" alt="The Open Page" loading="lazy">
+              <div class="manifesto-art-caption">
+                “We believe that a sculpture can speak, a poem can paint a picture, and public journalism can rebuild our civic covenant.”
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. EDITORIAL SERIES / INSIDE ISSUE 59 (PDF Pages 4 & 6)
+         ========================================================================== -->
+    <section class="section-wrapper" id="editorial-series">
+      <div class="container">
+        <!-- Section Header Line (Kinfolk Style) -->
+        <div class="kinfolk-section-head">
+          <h2 class="kinfolk-section-title">Inside Issue Fifty-Nine</h2>
+          <a href="#articles" class="kinfolk-view-all" onclick="openAllArticlesDrawer(); return false;">View All</a>
+        </div>
+
+        <!-- 5-Column Editorial Portrait Grid -->
+        <div class="editorial-portrait-grid" id="articlesGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04. FEATURE IMMERSION BREAKOUT BANNER (PDF Page 5)
+         ========================================================================== -->
+    <section class="breakout-banner-section" id="feature-breakout">
+      <div class="breakout-banner-media">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="Sanctuary Feature" loading="lazy">
+        <div class="breakout-banner-overlay"></div>
+      </div>
+      <div class="container breakout-banner-content">
+        <span class="breakout-top-kicker">Manor from heaven: A visit to a healing sanctuary farm in Franschhoek.</span>
+        <h2 class="breakout-massive-title" onclick="openArticleReader('art-3')">HOME TOUR: STERREKOPJE</h2>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. THOUGHT STARTERS / HIGHLIGHTS LIST (PDF Page 7)
+         ========================================================================== -->
+    <section class="section-wrapper" id="thought-starters">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <h2 class="kinfolk-section-title">Thought Starters</h2>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--text-muted);">ESSAYS & CRITICISM</span>
+        </div>
+
+        <div class="thought-starters-list" id="thoughtStartersList">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06. POLITICAL CAMPAIGNS & CIVIC PICKS (PDF Page 4)
+         ========================================================================== -->
+    <section class="section-wrapper" id="campaigns">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Politics & Public Campaigns</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Grassroots visual manifestos, election picks, and civic mobilization posters.</p>
+          </div>
+          
+          <!-- Category Filters -->
+          <div class="campaign-filter-tabs">
+            <button class="filter-tab-btn active" data-filter="all">All Picks</button>
+            <button class="filter-tab-btn" data-filter="democracy">Democracy</button>
+            <button class="filter-tab-btn" data-filter="ecology">Ecology</button>
+            <button class="filter-tab-btn" data-filter="labor">Labor</button>
+            <button class="filter-tab-btn" data-filter="posters">Posters</button>
+          </div>
+        </div>
+
+        <!-- Multi-Column Portrait Cards -->
+        <div class="campaign-grid" id="campaignsGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07. LIVE ART & MASTERPIECE AUCTIONS (KINFOLK GALLERY)
+         ========================================================================== -->
+    <section class="section-wrapper auctions-section" id="auctions">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Live Art & Painting Auctions</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Curated originals and archival lots from contemporary master painters.</p>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); letter-spacing: 0.1em; text-transform: uppercase;">
+            ● 4 Lots Open for Bidding
+          </span>
+        </div>
+
+        <div class="auctions-grid" id="auctionsGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         08. VOICES THAT MATTER / PODCASTS
+         ========================================================================== -->
+    <section class="section-wrapper" id="podcasts">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <h2 class="kinfolk-section-title">Voices That Matter</h2>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-muted);">AUDIO DIALOGUES</span>
+        </div>
+
+        <div class="podcast-container">
+          <!-- Left: Artwork Cover -->
+          <div class="podcast-featured-art">
+            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80" alt="Podcast Cover" id="podcastCoverImg">
+          </div>
+
+          <!-- Middle: Player Controls & Metadata -->
+          <div class="podcast-player-main">
+            <div class="podcast-badge" id="podcastEpisodeBadge">EPISODE 22 • 45:20</div>
+            <h3 class="podcast-title" id="podcastCurrentTitle">The Future of Journalism in the Age of AI</h3>
+            <p class="podcast-host" id="podcastCurrentHost">With Ananya Sen, Senior Investigative Journalist</p>
+
+            <div class="audio-controls-wrap">
+              <div class="audio-scrubber-row">
+                <span class="audio-time" id="podcastCurrentTime">00:00</span>
+                <div class="audio-progress-bar" id="podcastSeekerBar">
+                  <div class="audio-progress-fill" id="podcastSeekerFill"></div>
+                </div>
+                <span class="audio-time" id="podcastDuration">45:20</span>
+              </div>
+
+              <div class="audio-btns-row">
+                <div class="player-main-btns">
+                  <button class="icon-btn" id="podcastPrevBtn" style="color: #FFF; border-color: rgba(255,255,255,0.2); background: transparent;" title="Previous Episode">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+                  </button>
+                  <button class="btn-play-podcast" id="podcastPlayToggleBtn" title="Play / Pause">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" id="playIconSvg"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </button>
+                  <button class="icon-btn" id="podcastNextBtn" style="color: #FFF; border-color: rgba(255,255,255,0.2); background: transparent;" title="Next Episode">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Episode Playlist -->
+          <div class="podcast-playlist">
+            <div class="playlist-header">ARCHIVED DIALOGUES</div>
+            <div id="podcastPlaylistContainer">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         09. CITIZEN OPINION POLLS
+         ========================================================================== -->
+    <section class="section-wrapper" id="polls">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Citizen Opinion & Deliberation</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Direct participatory feedback shaping our forthcoming investigations.</p>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-crimson); letter-spacing: 0.1em;">● ACTIVE VOTING</span>
+        </div>
+
+        <div class="polls-grid" id="pollsGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         10. RESEARCH PAPERS & POLICY ARCHIVE
+         ========================================================================== -->
+    <section class="section-wrapper" id="research">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Academic Research & Policy Repository</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Peer-reviewed empirical monographs and open-access policy briefs.</p>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-muted);">PDF EXPORT ENABLED</span>
+        </div>
+
+        <div class="papers-grid" id="papersGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         11. SCIENCE & TECHNOLOGY / THE HUMAN FUTURE
+         ========================================================================== -->
+    <section class="section-wrapper" id="science-tech">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Science & Technology</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Neural frontiers, post-quantum cryptography, synthetic biology, and democratic intelligence.</p>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--text-muted);">THE HUMAN FUTURE</span>
+        </div>
+
+        <div class="science-tech-grid" id="scienceTechGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         12. COMIC SERIES & CURATED EDITIONS (PDF Page 9)
+         ========================================================================== -->
+    <section class="section-wrapper" id="editions">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <h2 class="kinfolk-section-title">Curated Editions & Series</h2>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--text-muted);">COLLECTIBLES & PRINT</span>
+        </div>
+
+        <!-- 3-Column Luxury Showcase (PDF Page 9) -->
+        <div class="comic-series-grid" id="comicSeriesGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         12. SCHOLARSHIPS FOR WRITERS & ARTISTS
+         ========================================================================== -->
+    <section class="section-wrapper" id="scholarships">
+      <div class="container">
+        <div class="kinfolk-section-head">
+          <div>
+            <h2 class="kinfolk-section-title">Fellowships & Grants</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Direct funding for investigative journalists, researchers, and public muralists.</p>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-green); letter-spacing: 0.1em;">2026 CYCLE OPEN</span>
+        </div>
+
+        <div class="scholarships-grid" id="scholarshipsGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         13. NEWSLETTER BANNER
+         ========================================================================== -->
+    <section class="container" style="margin: 60px auto 80px;">
+      <div class="newsletter-banner">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-gold); font-weight: 700;">THE AUTONOMY DISPATCH</span>
+          <h3 class="newsletter-title" style="margin-top: 6px;">Delivered to your inbox every Sunday morning.</h3>
+          <p class="newsletter-text">Join 85,000+ subscribers reading thoughtful long-form essays, rare art releases, and independent policy dispatches.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" class="newsletter-input" id="newsletterEmailInput" placeholder="Enter your email address..." required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       14. FOOTER (WITH DISCREET ADMIN LOCK ACCESS AT BOTTOM)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">AUTONOMY WALKS</div>
+          <p class="footer-desc">A sanctuary for investigative journalism, fine art auctions, and sovereign public discourse.</p>
+          <div class="footer-social-links">
+            <a href="#" class="footer-social-icon" aria-label="Twitter">𝕏</a>
+            <a href="#" class="footer-social-icon" aria-label="Instagram">IG</a>
+            <a href="#" class="footer-social-icon" aria-label="YouTube">YT</a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">IN</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Editorial</h4>
+          <ul class="footer-links-list">
+            <li><a href="#editorial-series">Inside Issue 59</a></li>
+            <li><a href="#thought-starters">Thought Starters</a></li>
+            <li><a href="#campaigns">Politics & Picks</a></li>
+            <li><a href="#manifesto">The Manifesto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Auctions & Art</h4>
+          <ul class="footer-links-list">
+            <li><a href="#auctions">Live Gallery Lots</a></li>
+            <li><a href="#auctions">Consignment Inquiries</a></li>
+            <li><a href="#editions">Curated Editions</a></li>
+            <li><a href="#scholarships">Artist Fellowships</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Repository</h4>
+          <ul class="footer-links-list">
+            <li><a href="#research">Academic Papers</a></li>
+            <li><a href="#polls">Citizen Voice</a></li>
+            <li><a href="#podcasts">Voices Podcast</a></li>
+            <li><a href="#scholarships">Grant Guidelines</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Directory</h4>
+          <ul class="footer-links-list">
+            <li><a href="#manifesto">About the Bureau</a></li>
+            <li><a href="#">Editorial Ethics</a></li>
+            <li><a href="#editions">Print Distribution</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom with Hidden / Discreet Admin Access Button at the very bottom -->
+      <div class="footer-bottom">
+        <span>© 2026 Autonomy Walks Media Group. All rights reserved.</span>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span>Independent • Non-Partisan • Open Discourse</span>
+          <!-- Discreet Admin Lock Trigger Button (hidden in plain sight at bottom) -->
+          <button id="openAdminModalBtn" class="hidden-admin-btn" title="Internal Bureau Access" aria-label="Admin Portal">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & OVERLAYS
+       ========================================================================== -->
+
+  <!-- AUTH MODAL (SIGN IN / SIGN UP) -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-container" style="max-width: 440px;">
+      <button class="modal-close-btn" id="closeAuthModalBtn" aria-label="Close auth dialog">&times;</button>
+      <div class="modal-header" style="text-align: center; border-bottom: none; padding-bottom: 0;">
+        <span class="brand-logo" style="font-size: 1.35rem;">AUTONOMY WALKS</span>
+        <p id="authModalSubtitle" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">Sign in to like stories, participate in discussions, and join civic polls.</p>
+      </div>
+
+      <div class="modal-body" style="padding-top: 16px;">
+        <!-- Auth Tabs -->
+        <div class="auth-tabs-row">
+          <button class="auth-tab-btn active" id="tabBtnSignIn">Sign In</button>
+          <button class="auth-tab-btn" id="tabBtnSignUp">Create Account</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signInForm" class="auth-form-panel active">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Sign In</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signUpForm" class="auth-form-panel">
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" placeholder="e.g. Elena Rostova" required>
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Create Password</label>
+            <input type="password" id="signupPassword" placeholder="••••••••" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
+        </form>
+
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-hairline); font-size: 0.76rem; color: var(--text-muted); text-align: center;">
+          Secured with Clerk Authentication Protocol
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KINFOLK ARTICLE READER MODAL (PDF Pages 11-16) -->
+  <div class="modal-backdrop" id="readerModal">
+    <div class="modal-container kinfolk-reader-container">
+      <button class="modal-close-btn" id="closeReaderModalBtn" aria-label="Close reader">&times;</button>
+      
+      <div class="kinfolk-reader-body">
+        <div class="reader-brand-tag">AUTONOMY WALKS</div>
+        <h1 class="reader-hero-title" id="readerTitle">JESSIE WARE</h1>
+
+        <div class="reader-credits-line" id="readerCreditsLine">
+          Words <span id="readerAuthor">Tara Joshi</span> • Photos <span id="readerPhotographer">Raphaëlle Orphelin</span> • Styling <span id="readerStylist">Aartthie Mahakuperan</span>
+        </div>
+
+        <div class="reader-hero-media">
+          <img src="" alt="" class="reader-modal-img" id="readerImg">
+        </div>
+
+        <div class="reader-article-content" id="readerBody">
+          <!-- Body paragraphs -->
+        </div>
+
+        <blockquote class="reader-pull-quote" id="readerPullQuote">
+          “We believe that journalism and art can speak when institutions fail.”
+        </blockquote>
+
+        <div class="reader-gallery-grid" id="readerGalleryGrid">
+          <!-- Gallery -->
+        </div>
+
+        <!-- Action Bar: Like, Bookmark, Share -->
+        <div class="post-action-bar" style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 16px; margin-top: 30px;">
+          <button class="action-btn" id="readerLikeBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span id="readerLikesCount">0</span> Likes
+          </button>
+          <button class="action-btn" id="readerBookmarkBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+            <span>Bookmark</span>
+          </button>
+          <button class="action-btn" id="readerShareBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            <span>Share</span>
+          </button>
+        </div>
+
+        <!-- Threaded Comments -->
+        <div class="comments-section-wrap">
+          <div class="comments-header">
+            <span>Public Dialogue (<span id="readerCommentsCount">0</span>)</span>
+          </div>
+
+          <form class="comment-form" id="articleCommentForm">
+            <div class="comment-form-inputs">
+              <input type="text" id="commentAuthorInput" placeholder="Your name..." required>
+              <input type="email" id="commentEmailInput" placeholder="Your email..." required>
+            </div>
+            <textarea id="commentTextInput" rows="3" placeholder="Share your perspective on this essay..." required></textarea>
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+            </div>
+          </form>
+
+          <div class="comments-list" id="readerCommentsList">
+            <!-- Comments -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE BID MODAL -->
+  <div class="modal-backdrop" id="bidModal">
+    <div class="modal-container" style="max-width: 760px;">
+      <button class="modal-close-btn" id="closeBidModalBtn" aria-label="Close bid modal">&times;</button>
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem;" id="bidModalArtworkTitle">Place Live Bid</h3>
+      </div>
+      <div class="modal-body">
+        <div class="bid-modal-grid">
+          <div>
+            <img src="" alt="" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-xs);" id="bidModalArtworkImg">
+            <div style="margin-top: 12px;">
+              <h4 id="bidModalArtist" style="font-size: 0.95rem; font-weight: 700;"></h4>
+              <p id="bidModalMedium" style="font-size: 0.8rem; color: var(--text-muted);"></p>
+            </div>
+          </div>
+
+          <div>
+            <div style="background: var(--bg-paper-light); padding: 14px; border: 1px solid var(--border-hairline); margin-bottom: 16px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+                <span>Current Bid:</span>
+                <strong id="bidModalCurrentBid" style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--accent-gold);">₹ 0</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                <span>Minimum Next Bid:</span>
+                <strong id="bidModalMinBid">₹ 0</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--border-hairline);">
+                <span>Time Left:</span>
+                <span id="bidModalTimer" style="font-family: var(--font-mono); color: var(--accent-crimson); font-weight: 700;"></span>
+              </div>
+            </div>
+
+            <form id="placeBidForm">
+              <div class="form-group">
+                <label for="bidderNameInput">Your Verified Bidder Name</label>
+                <input type="text" id="bidderNameInput" placeholder="e.g. Siddharth R." required>
+              </div>
+
+              <div class="form-group">
+                <label for="bidAmountInput">Your Bid Amount (₹ INR)</label>
+                <input type="number" id="bidAmountInput" placeholder="Enter amount..." required>
+              </div>
+
+              <div class="bid-preset-buttons">
+                <button type="button" class="btn-preset-bid" id="presetPlus5k">+ ₹ 5,000</button>
+                <button type="button" class="btn-preset-bid" id="presetPlus10k">+ ₹ 10,000</button>
+                <button type="button" class="btn-preset-bid" id="presetPlus25k">+ ₹ 25,000</button>
+              </div>
+
+              <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 14px;">Confirm & Submit Bid</button>
+            </form>
+
+            <div style="margin-top: 18px;">
+              <div style="font-size: 0.74rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">Live Bid Feed</div>
+              <div class="bid-history-feed" id="bidHistoryFeed">
+                <!-- Rendered by app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH PAPER MODAL -->
+  <div class="modal-backdrop" id="paperModal">
+    <div class="modal-container" style="max-width: 820px;">
+      <button class="modal-close-btn" id="closePaperModalBtn">&times;</button>
+      <div class="modal-body" style="padding: 40px;">
+        <span class="category-badge research" id="paperModalCategory" style="margin-bottom: 12px;">POLITICS</span>
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 8px;" id="paperModalTitle">Paper Title</h2>
+        <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+          <span id="paperModalAuthor">Author</span> • <span id="paperModalDate">Date</span> • Autonomy Walks Research Bureau
+        </div>
+
+        <div style="background: var(--bg-paper-light); border-left: 2px solid var(--text-primary); padding: 18px; margin-bottom: 24px;">
+          <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">Executive Abstract</h4>
+          <p id="paperModalAbstract" style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);"></p>
+        </div>
+
+        <div id="paperModalContent" style="font-family: var(--font-body); font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 30px;">
+          <!-- Paper content -->
+        </div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end; border-top: 1px solid var(--border-hairline); padding-top: 20px;">
+          <button class="btn btn-outline btn-sm" id="paperCiteBtn">Cite Paper</button>
+          <button class="btn btn-primary btn-sm" id="paperDownloadPdfBtn">Download Full Monograph (TXT/PDF)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHOLARSHIP APPLICATION MODAL -->
+  <div class="modal-backdrop" id="scholarshipModal">
+    <div class="modal-container" style="max-width: 540px;">
+      <button class="modal-close-btn" id="closeScholarshipModalBtn">&times;</button>
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-serif); font-size: 1.3rem;" id="scholarshipModalTitle">Apply for Grant</h3>
+      </div>
+      <div class="modal-body">
+        <form id="scholarshipApplicationForm">
+          <div class="form-group">
+            <label for="applicantName">Applicant Full Name</label>
+            <input type="text" id="applicantName" placeholder="e.g. Sneha Roy" required>
+          </div>
+          <div class="form-group">
+            <label for="applicantEmail">Email Address</label>
+            <input type="email" id="applicantEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="applicantInstitution">University / Organization</label>
+            <input type="text" id="applicantInstitution" placeholder="e.g. Delhi University / Freelance" required>
+          </div>
+          <div class="form-group">
+            <label for="applicantProposal">Research Proposal / Project Overview</label>
+            <textarea id="applicantProposal" rows="4" placeholder="Describe your investigation or artistic installation..." required></textarea>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px;">
+            <button type="button" class="btn btn-outline" id="cancelScholarshipBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL SEARCH MODAL -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-container search-modal-container">
+      <button class="modal-close-btn" id="closeSearchModalBtn">&times;</button>
+      <div class="modal-body" style="padding: 30px;">
+        <div class="search-input-wrap">
+          <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" class="search-main-input" id="searchKeywordInput" placeholder="Search stories, auctions, podcasts, papers..." autofocus>
+        </div>
+        <div class="search-results-list" id="searchResultsContainer">
+          <div style="text-align: center; color: var(--text-muted); padding: 40px;">Type to search across the entire Autonomy Walks archive...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKMARKS DRAWER MODAL -->
+  <div class="modal-backdrop" id="bookmarksModal">
+    <div class="modal-container" style="max-width: 500px;">
+      <button class="modal-close-btn" id="closeBookmarksModalBtn">&times;</button>
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-serif); font-size: 1.3rem;">Saved Reading List</h3>
+      </div>
+      <div class="modal-body">
+        <div id="bookmarksListContainer" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN CMS STUDIO MODAL (Triggered only from discreet button at bottom footer) -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-container admin-modal-container">
+      <button class="modal-close-btn" id="closeAdminModalBtn">&times;</button>
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem;">Autonomy Walks Studio</h3>
+          <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">Editorial CMS & Curatorial Management</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="resetDemoDataBtn" title="Reset catalog to demo state">Restore Seed Data</button>
+      </div>
+
+      <!-- Admin Tab Navigation -->
+      <div class="admin-nav-tabs">
+        <button class="admin-tab-btn active" data-tab="tab-article">Publish Article</button>
+        <button class="admin-tab-btn" data-tab="tab-campaign">Add Campaign</button>
+        <button class="admin-tab-btn" data-tab="tab-auction">Launch Auction</button>
+        <button class="admin-tab-btn" data-tab="tab-poll">Create Poll</button>
+        <button class="admin-tab-btn" data-tab="tab-paper">Upload Paper</button>
+        <button class="admin-tab-btn" data-tab="tab-manage">Catalog Manager</button>
+      </div>
+
+      <!-- Tab 1: Publish Article -->
+      <div class="admin-tab-panel active" id="tab-article">
+        <form id="adminArticleForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="artTitle">Article Headline</label>
+              <input type="text" id="artTitle" placeholder="e.g. The Architecture of Dissent" required>
+            </div>
+            <div class="form-group">
+              <label for="artCategory">Category / Section</label>
+              <select id="artCategory" required>
+                <option value="Politics">Politics & Democracy</option>
+                <option value="Science & Tech">Science & Technology</option>
+                <option value="Society">Society & Culture</option>
+                <option value="Art Journalism">Art Journalism & Aesthetics</option>
+                <option value="Environment">Ecological Justice</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="artAuthor">Author Name</label>
+              <input type="text" id="artAuthor" placeholder="e.g. Dr. Elena Rostova" required>
+            </div>
+            <div class="form-group">
+              <label for="artReadTime">Estimated Read Time</label>
+              <input type="text" id="artReadTime" placeholder="e.g. 6 min read" value="6 min read" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="artImageUrl">Cover Image URL</label>
+            <input type="url" id="artImageUrl" placeholder="https://images.unsplash.com/..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="artExcerpt">Short Summary / Deck</label>
+            <textarea id="artExcerpt" rows="2" placeholder="Brief 2-sentence summary for card previews..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="artContent">Full Essay Body</label>
+            <textarea id="artContent" rows="6" placeholder="Write full investigative story. Separate paragraphs with blank lines..." required></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Publish to Editorial Feed</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 2: Add Campaign -->
+      <div class="admin-tab-panel" id="tab-campaign">
+        <form id="adminCampaignForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="campTitle">Campaign Name</label>
+              <input type="text" id="campTitle" placeholder="e.g. Hope For All" required>
+            </div>
+            <div class="form-group">
+              <label for="campCategory">Category</label>
+              <select id="campCategory" required>
+                <option value="Democracy">Democracy</option>
+                <option value="Ecology">Ecology</option>
+                <option value="Labor">Labor</option>
+                <option value="Posters">Posters & Archive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="campSubtitle">Location & Organization</label>
+              <input type="text" id="campSubtitle" placeholder="e.g. Berlin Grassroots Assembly • 2026" required>
+            </div>
+            <div class="form-group">
+              <label for="campImageUrl">Poster / Photograph URL</label>
+              <input type="url" id="campImageUrl" placeholder="https://images.unsplash.com/..." required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="campDescription">Campaign Manifesto / Description</label>
+            <textarea id="campDescription" rows="3" placeholder="Context of the movement and citizen objectives..." required></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Add Campaign Pick</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 3: Launch Auction -->
+      <div class="admin-tab-panel" id="tab-auction">
+        <form id="adminAuctionForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="aucTitle">Artwork Title</label>
+              <input type="text" id="aucTitle" placeholder="e.g. Golden Reflection" required>
+            </div>
+            <div class="form-group">
+              <label for="aucArtist">Artist Name</label>
+              <input type="text" id="aucArtist" placeholder="e.g. Maya Sen" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="aucMedium">Medium & Dimensions</label>
+              <input type="text" id="aucMedium" placeholder="e.g. Oil on Canvas (36x30 in)" required>
+            </div>
+            <div class="form-group">
+              <label for="aucStartBid">Starting Bid (₹ INR)</label>
+              <input type="number" id="aucStartBid" placeholder="e.g. 50000" min="1000" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="aucImageUrl">High-Res Artwork Photo URL</label>
+              <input type="url" id="aucImageUrl" placeholder="https://images.unsplash.com/..." required>
+            </div>
+            <div class="form-group">
+              <label for="aucDurationHours">Auction Duration (Hours)</label>
+              <input type="number" id="aucDurationHours" value="4" min="1" max="72" required>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-gold">Launch Live Auction Lot</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 4: Add Opinion Poll -->
+      <div class="admin-tab-panel" id="tab-poll">
+        <form id="adminPollForm">
+          <div class="form-group">
+            <label for="pollQuestionInput">Poll Question for Citizens</label>
+            <input type="text" id="pollQuestionInput" placeholder="e.g. Should algorithmic recommendation feeds face public audit?" required>
+          </div>
+
+          <div class="form-group">
+            <label>Voting Options (Provide at least 2 options)</label>
+            <div class="poll-option-input-row">
+              <input type="text" class="poll-opt-input" placeholder="Option 1: Yes, mandatory by law" required>
+            </div>
+            <div class="poll-option-input-row">
+              <input type="text" class="poll-opt-input" placeholder="Option 2: Voluntary industry self-regulation" required>
+            </div>
+            <div class="poll-option-input-row">
+              <input type="text" class="poll-opt-input" placeholder="Option 3: No regulation needed (optional)">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Publish Citizen Poll</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 5: Upload Research Paper -->
+      <div class="admin-tab-panel" id="tab-paper">
+        <form id="adminPaperForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="paperTitle">Paper Title</label>
+              <input type="text" id="paperTitle" placeholder="e.g. The Political Economy of Green Bonds" required>
+            </div>
+            <div class="form-group">
+              <label for="paperCategory">Academic Field</label>
+              <select id="paperCategory" required>
+                <option value="Politics">Political Science</option>
+                <option value="Economics">Macroeconomics</option>
+                <option value="Society">Sociology & Media</option>
+                <option value="Environment">Urban Ecology</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="paperAuthor">Author(s) / Research Fellows</label>
+              <input type="text" id="paperAuthor" placeholder="e.g. Dr. Sameer Dutta, Prof. Elena Rostova" required>
+            </div>
+            <div class="form-group">
+              <label for="paperAffiliation">Institution / University</label>
+              <input type="text" id="paperAffiliation" placeholder="e.g. Institute for Democratic Studies" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="paperAbstractInput">Executive Abstract</label>
+            <textarea id="paperAbstractInput" rows="3" placeholder="Summary of hypothesis, data sampling, and core thesis conclusions..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="paperBodyContent">Full Paper Key Insights / Findings (for PDF download generator)</label>
+            <textarea id="paperBodyContent" rows="5" placeholder="Key empirical findings, policy recommendations, methodology..." required></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Publish Research Paper</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 6: Manage & Delete -->
+      <div class="admin-tab-panel" id="tab-manage">
+        <h4 style="font-size: 0.95rem; margin-bottom: 14px; text-transform: uppercase;">Active Content Catalog</h4>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Title / Headline</th>
+                <th>Meta / Author</th>
+                <th>Likes / Bids</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminManageTableBody">
+              <!-- Rendered items -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main Application Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
